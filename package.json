@@ -1,7 +1,8 @@
 {
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1",
+    "express": "^4.21.2",
     "i": "^0.3.7",
     "mongodb": "^7.4.0",
     "mongoose": "^9.7.3"
