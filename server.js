@@ -3,6 +3,8 @@ const dotenv=require('dotenv');
 const connectDB=require('./config/db.js');
 const AppError=require('./utils/appError.js');
 const globalErrorHandler=require('./middleware/errorMiddleware.js');
+const complaintRouter=require('./routes/complaintRoutes.js');
+const authRouter = require('./routes/authRoutes.js');
 dotenv.config({path:'./.env'});
 connectDB();
 const app=express();
@@ -11,6 +13,9 @@ app.use(express.json({limit:'10kb'}));
 app.get('/api/v1/health',(req,res)=>{
     res.status(200).json({status:'Success',message:'CivicFlow API operational'});
 });
+app.use('/api/v1/auth',authRouter);
+app.use('/api/v1/complaints',complaintRouter);
+
 app.all('*',(req,res,next)=>{
     next(new AppError(`Cant find ${req.originalUrl} on this server`,404));
 });
